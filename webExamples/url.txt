@@ -1,0 +1,5 @@
+https://github.com/googlesamples/android-AccelerometerPlay
+https://developer.android.com/guide/topics/sensors/sensors_motion.html
+https://github.com/drejkim/AndroidWearMotionSensors
+https://www.techrepublic.com/article/pro-tip-use-android-sensors-to-detect-orientation-changes/ - check This First
+https://examples.javacodegeeks.com/android/core/bluetooth/bluetoothadapter/android-bluetooth-example/ - bluetouth
