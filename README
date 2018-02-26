@@ -1,8 +1,8 @@
-#ControlServo-BLEApp
+# ControlServo-BLEApp
 Android and TI-RTOS applications that commuicate over BLE. Android App reads the rotation vector from the phone (only the pitch and roll), and sends it to the TI-RTOS BLE application (firmware is installed on the CC-1350 launchpad).
 
-##Building the Project
-###Pre-requisites:
+## Building the Project
+### Pre-requisites:
 
 <ul>
 <li>Java 8 (or above).</li>
@@ -11,7 +11,7 @@ Android and TI-RTOS applications that commuicate over BLE. Android App reads the
 <li>TI's [CCS compiler](http://processors.wiki.ti.com/index.php/Compiler_Releases).</li>
 </ul>
 
-###Recommended build steps:
+### Recommended build steps:
 
 <ol>
 <li>Download the latest [Android Studio](https://developer.android.com/studio/index.html) and [Code Composer Studio](http://processors.wiki.ti.com/index.php/Download_CCS).</li>
