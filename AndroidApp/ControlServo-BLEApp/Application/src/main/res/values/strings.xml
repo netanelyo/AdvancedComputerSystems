@@ -24,20 +24,15 @@
     <string name="app_header">BLE application</string>
     <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
 
-    <string name="unknown_device">Unknown device</string>
-    <string name="unknown_characteristic">Unknown characteristic</string>
-    <string name="unknown_service">Unknown service</string>
-
     <string name="device_scan">Scanning for devices...</string>
     <string name="button_start">Start</string>
     <string name="button_pause">Pause</string>
     <string name="dev_not_found">
         Device not found, please check if device is on and scan again
     </string>
+    <string name="tilt_device">Tilt your device</string>
 
     <!-- Menu items -->
-    <string name="menu_connect">Connect</string>
-    <string name="menu_disconnect">Disconnect</string>
     <string name="menu_scan">Scan</string>
     <string name="menu_stop">Stop</string>
 </resources>

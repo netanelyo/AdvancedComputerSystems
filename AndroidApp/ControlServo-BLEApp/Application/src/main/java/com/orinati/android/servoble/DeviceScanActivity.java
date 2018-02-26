@@ -88,13 +88,16 @@ public class DeviceScanActivity extends Activity {
             // Start button - connect to board application and send data
             mStartButton = mView.findViewById(R.id.button_start);
             if (boardFound()) { // If can connect to board
+                if (mToast != null) {
+                    mToast.cancel();
+                }
                 mStartButton.setClickable(true);
                 mStartButton.setText(R.string.button_start);
                 mStartButton.setOnClickListener(new StartClickListener());
                 mStartButton.setVisibility(View.VISIBLE);
             }
             else { // Couldn't connect to board
-                mToast = Toast.makeText(this, R.string.dev_not_found, Toast.LENGTH_LONG);
+                mToast = Toast.makeText(this, R.string.dev_not_found, Toast.LENGTH_SHORT);
                 mToast.show();
                 mStartButton.setVisibility(View.INVISIBLE);
                 mStartButton.setClickable(false);

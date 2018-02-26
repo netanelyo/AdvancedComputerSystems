@@ -50,13 +50,13 @@ public class DeviceControlActivity extends Activity {
 
     private TextView                    mConnectionState;
     private TextView                    mDataField;
+    private TextView                    mTiltDevice;
     private String                      mDeviceName;
     private String                      mDeviceAddress;
     private BluetoothLeService          mBluetoothLeService;
     private BluetoothGattCharacteristic mWriteCharacteristic;
     private Button                      mPauseButton;
     private RotationVectorSensor        mRotationVectorSensor;
-    private boolean                     mConnected;
 
     // Code to manage Service lifecycle.
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -90,10 +90,12 @@ public class DeviceControlActivity extends Activity {
             final String action = intent.getAction();
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
                 updateConnectionState(R.string.connected);
+                mTiltDevice.setVisibility(View.VISIBLE);
                 invalidateOptionsMenu();
             }
             else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
                 updateConnectionState(R.string.disconnected);
+                mTiltDevice.setVisibility(View.INVISIBLE);
                 invalidateOptionsMenu();
             }
             else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
@@ -136,10 +138,11 @@ public class DeviceControlActivity extends Activity {
 
         // Sets up UI references.
         ((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
-        mPauseButton = (Button) findViewById(R.id.button_pause);
+        mPauseButton = findViewById(R.id.button_pause);
         mPauseButton.setOnClickListener(new PauseClickListener());
-        mConnectionState = (TextView) findViewById(R.id.connection_state);
-        mDataField = (TextView) findViewById(R.id.data_value);
+        mConnectionState    = findViewById(R.id.connection_state);
+        mDataField          = findViewById(R.id.data_value);
+        mTiltDevice         = findViewById(R.id.tilt);
 
         getActionBar().setTitle(mDeviceName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -175,8 +178,7 @@ public class DeviceControlActivity extends Activity {
     private void updateConnectionState(final int resourceId) {
         runOnUiThread(new Runnable() {
             @Override
-            public void run() {
-                mConnectionState.setText(resourceId);
+            public void run() {mConnectionState.setText(resourceId);
             }
         });
     }
