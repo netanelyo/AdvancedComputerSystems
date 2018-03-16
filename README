@@ -8,7 +8,7 @@ Android and TI-RTOS applications that commuicate over BLE. Android App reads the
 - Android Build tools v27.0.2.
 - TI's [CCS compiler](http://processors.wiki.ti.com/index.php/Compiler_Releases).
 
-## ![AndroidLogo](https://github.com/netanelyo/AdvancedComputerSystems/blob/master/images/ls.jpg=50x50) Android App
+## ![AndroidLogo](https://github.com/netanelyo/AdvancedComputerSystems/blob/master/images/ls.jpg =50x50) Android App
 
 ### Recommended build steps:
 1. Download the latest [Android Studio](https://developer.android.com/studio/index.html) and [Code Composer Studio](http://processors.wiki.ti.com/index.php/Download_CCS).
