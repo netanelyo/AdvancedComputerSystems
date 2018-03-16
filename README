@@ -27,10 +27,8 @@ As one can see in the image, the game requires using both hands (one for axis co
 ### Android application
 Used Android Studio 3.0.1 for the development process.
 #### Development process:
-1. Using Android Sensor API to read the [Rotation Vector](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_ROTATION_VECTOR) (Pitch and Roll only):
+1. Using Android Sensor API to read the [Rotation Vector](https://developer.android.com/reference/android/hardware/Sensor.html#TYPE_ROTATION_VECTOR) (Pitch and Roll only), Used this [example](https://www.techrepublic.com/article/pro-tip-use-android-sensors-to-detect-orientation-changes/) for the implementation. The pitch and roll orientation:
 ![rotation](https://github.com/netanelyo/AdvancedComputerSystems/blob/master/images/pitchandroll.jpg)
-
-Used this [example](https://www.techrepublic.com/article/pro-tip-use-android-sensors-to-detect-orientation-changes/) for the implementation.
 2. For the BLE connection establishment with the micro-controller we used this [example](https://github.com/googlesamples/android-BluetoothLeGatt), from Google's Android examples Github.
 3. We changed the UI of the above example, and added the BLE writing data functionality.
 4. Finally, we combined both applications, so it will the read the rotation vector of the phone, and send it immediately to the micro-controller.
