@@ -1,19 +1,28 @@
-
 # ControlServo-BLEApp
 Android and TI-RTOS applications that communicate over BLE. Android app reads the rotation vector from the phone (only the pitch and roll), and sends it to the TI-RTOS BLE application (firmware is installed on the CC-1350 launchpad).
 ## Motivation
-Our initial goal was to make the Metal marble labyrinth puzzle, i.e.,
+Our initial goal was to make the Metal Marble Labyrinth Puzzle accesible, the game:
+
 ![game](https://github.com/netanelyo/AdvancedComputerSystems/blob/master/images/game.jpg)
-accessible. As one can see in the image, the game requires using both hands (one for axis controller). With our implementation, one can play this game with one (or none) hand. Besides the mentioned game, the software can be used for several application such as: model airplanes or ships, etc.
+
+As one can see in the image, the game requires using both hands (one for axis controller). With our implementation, one can play this game with one (or none) hand. Besides the mentioned game, the software can be used for several application such as: model airplanes or ships, etc.
 ## Equipment
 - TI CC1350 Launchpad:
+
 ![board](https://github.com/netanelyo/AdvancedComputerSystems/blob/master/images/Board.png)
+
 - 2 * SG-90 servo engines:
+
 ![servo](https://github.com/netanelyo/AdvancedComputerSystems/blob/master/images/Servo.png)
+
 - Samsung Galaxy S3:
+
 ![galaxy](https://github.com/netanelyo/AdvancedComputerSystems/blob/master/images/Galaxy.png)
+
 - Bread Board:
+
 ![matrix](https://github.com/netanelyo/AdvancedComputerSystems/blob/master/images/Matrix.png)
+
 ## Implementation
 ### Android application
 Used Android Studio 3.0.1 for the development process.
@@ -44,11 +53,14 @@ Used Code Composer Studio 7.3.0 for the development process.
 1. Upon established connection, start reading the data from the 0xfff3 write characteristic.
 2. The read data will then be mapped to respective pulse width to the PIN output.
 3. Servo engines will be positioned accordingly.
+
+## TODO:
 #### Technical details:
 - The linear mapping between the degree (deg) and pulse width (pw):
 pw = 
 - Each time only one of {pitch, roll} was sent, and the synchronization between the orientation (pitch/roll) and the corresponding servo engine was done using boolean flags.
 - Limited the degrees to [-90, 90].
+#### Add youtube video
 ## Our learning process
 ### Android
 - First, we started by learning how write a simple "Hello, world" Android application, using Android Studio.
