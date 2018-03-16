@@ -17,7 +17,7 @@ public class RotationVectorSensor {
     private BluetoothGattCharacteristic mCharacteristic;
     private BluetoothGatt               mGatt;
 
-    boolean paused  = false;
+    boolean paused  = true;
     boolean round   = false;
 
     public RotationVectorSensor(SensorManager sensorManager) {
