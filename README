@@ -58,7 +58,7 @@ Used Code Composer Studio 7.3.0 for the development process.
 - Upon reading the data, it is masked to get the MSB and to output to the corresponding engine.
 - Limited the degrees to [-60, 60].
 
-## Demonstration:
+## Demonstration (press image to see video):
 [![Demonstration](https://img.youtube.com/vi/h9fh_vSBR-g/0.jpg)](https://youtu.be/h9fh_vSBR-g)
 
 ## Our learning process
