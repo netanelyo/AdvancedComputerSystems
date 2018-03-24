@@ -662,6 +662,12 @@ static bStatus_t simpleProfile_ReadAttrCB(uint16_t connHandle,
  * @return  SUCCESS, blePending or Failure
  */
 static int flag = 0;
+#define Board_PWM0              0
+#define Board_PWM1              1
+static PWM_Handle pwm1 = NULL;
+static PWM_Handle pwm2 = NULL;
+static uint8_t initialized = 0;
+
 static bStatus_t simpleProfile_WriteAttrCB(uint16_t connHandle,
                                            gattAttribute_t *pAttr,
                                            uint8_t *pValue, uint16_t len,
@@ -670,11 +676,6 @@ static bStatus_t simpleProfile_WriteAttrCB(uint16_t connHandle,
   bStatus_t status = SUCCESS;
   uint8 notifyApp = 0xFF;
 
-#define Board_PWM0              0
-#define Board_PWM1              1
-static PWM_Handle pwm1 = NULL;
-static PWM_Handle pwm2 = NULL;
-static uint8_t initialized = 0;
 
 
        /* Period and duty in microseconds */
@@ -716,82 +717,20 @@ static uint8_t initialized = 0;
 
        if (pValue) {
            val = (int)*pValue;
-           val = val - 90;
+           flag = val & 0x80;
+           val = val & 0x7f;
        }
 
+       val = val - 60;
        duty = (uint16_t) ((val/90.0 + 1.75) * 1000);
 
        if (flag) {
            PWM_setDuty(pwm1, duty);
        }
        else{
+
            PWM_setDuty(pwm2, duty);
        }
-       flag = 1- flag;
-
-//  if ( pAttr->type.len == ATT_BT_UUID_SIZE )
-//  {
-//    // 16-bit UUID
-//    uint16 uuid = BUILD_UINT16( pAttr->type.uuid[0], pAttr->type.uuid[1]);
-//    switch ( uuid )
-//    {
-//      case SIMPLEPROFILE_CHAR1_UUID:
-//      case SIMPLEPROFILE_CHAR3_UUID:
-//
-//        //Validate the value
-//        // Make sure it's not a blob oper
-//        if ( offset == 0 )
-//        {
-//          if ( len != 1 )
-//          {
-//            status = ATT_ERR_INVALID_VALUE_SIZE;
-//          }
-//        }
-//        else
-//        {
-//          status = ATT_ERR_ATTR_NOT_LONG;
-//        }
-//
-//        //Write the value
-//        if ( status == SUCCESS )
-//        {
-//          uint8 *pCurValue = (uint8 *)pAttr->pValue;
-//          *pCurValue = pValue[0];
-//
-//          if( pAttr->pValue == &simpleProfileChar1 )
-//          {
-//            notifyApp = SIMPLEPROFILE_CHAR1;
-//          }
-//          else
-//          {
-//            notifyApp = SIMPLEPROFILE_CHAR3;
-//          }
-//        }
-//
-//        break;
-//
-//      case GATT_CLIENT_CHAR_CFG_UUID:
-//        status = GATTServApp_ProcessCCCWriteReq( connHandle, pAttr, pValue, len,
-//                                                 offset, GATT_CLIENT_CFG_NOTIFY );
-//        break;
-//
-//      default:
-//        // Should never get here! (characteristics 2 and 4 do not have write permissions)
-//        status = ATT_ERR_ATTR_NOT_FOUND;
-//        break;
-//    }
-//  }
-//  else
-//  {
-//    // 128-bit UUID
-//    status = ATT_ERR_INVALID_HANDLE;
-//  }
-//
-//  // If a characteristic value changed then callback function to notify application of change
-//  if ( (notifyApp != 0xFF ) && simpleProfile_AppCBs && simpleProfile_AppCBs->pfnSimpleProfileChange )
-//  {
-//    simpleProfile_AppCBs->pfnSimpleProfileChange( notifyApp );
-//  }
 
   return ( status );
 }
