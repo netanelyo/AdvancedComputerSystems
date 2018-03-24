@@ -39,9 +39,10 @@ Used Android Studio 3.0.1 for the development process.
 4. To end the connection - the user can click the "pause" button.
 #### Technical details:
 - Rotation vector sample rate is 120ms.
-- Each time only one of {pitch, roll} was sent, and the synchronization between the orientation (pitch/roll) and the corresponding servo engine was done using the MSB of the written data.
-- Data was written on the 0xfff3 write characteristic of the TI-RTOS app.
+- Each time only one of {pitch, roll} is sent. The synchronization between the orientation (pitch/roll) and the corresponding servo engine is done by the MSB of the written data.
+- Data is written on the 0xfff3 write characteristic of the TI-RTOS app.
 - Limited the degrees to [-60, 60].
+
 ### TI-RTOS application (servo engines control)
 Used Code Composer Studio 7.3.0 for the development process.
 #### Development process:
@@ -52,14 +53,13 @@ Used Code Composer Studio 7.3.0 for the development process.
 1. Upon established connection, start reading the data from the 0xfff3 write characteristic.
 2. The read data will then be mapped to respective pulse width to the PIN output.
 3. Servo engines will be positioned accordingly.
-
-## TODO:
 #### Technical details:
-- The linear mapping between the degree (deg) and pulse width (pw):
-pw = 
-- Each time only one of {pitch, roll} was sent, and the synchronization between the orientation (pitch/roll) and the corresponding servo engine was done using boolean flags.
-- Limited the degrees to [-90, 90].
-#### Add youtube video
+- The linear mapping between the degree (deg) and pulse width (pw): pw = (deg/90 + 1.75) * 1000
+- Upon reading the data, it is masked to get the MSB and to output to the corresponding engine.
+- Limited the degrees to [-60, 60].
+
+## Demonstration:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/h9fh_vSBR-g" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 ## Our learning process
 ### Android
 - First, we started by learning how write a simple "Hello, world" Android application, using Android Studio.
