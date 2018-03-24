@@ -88,9 +88,6 @@ public class DeviceScanActivity extends Activity {
             // Start button - connect to board application and send data
             mStartButton = mView.findViewById(R.id.button_start);
             if (boardFound()) { // If can connect to board
-                if (mToast != null) {
-                    mToast.cancel();
-                }
                 mStartButton.setClickable(true);
                 mStartButton.setText(R.string.button_start);
                 mStartButton.setOnClickListener(new StartClickListener());
@@ -175,9 +172,6 @@ public class DeviceScanActivity extends Activity {
         super.onPause();
         scanLeDevice(false);
         mLeDevices.clear();
-        if (mToast != null) {
-            mToast.cancel();
-        }
     }
 
     private void scanLeDevice(final boolean enable) {

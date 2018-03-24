@@ -17,7 +17,7 @@ public class RotationVectorSensor {
     private BluetoothGattCharacteristic mCharacteristic;
     private BluetoothGatt               mGatt;
 
-    boolean paused  = false;
+    boolean paused  = true;
     boolean round   = false;
 
     public RotationVectorSensor(SensorManager sensorManager) {
@@ -61,21 +61,24 @@ public class RotationVectorSensor {
             deg = (int) Math.round(Math.toDegrees(mRotationManager.orientation[1]));
         }
         else {
-            deg = (int) Math.round(Math.toDegrees(mRotationManager.orientation[2]));
+            deg = (int) Math.round(Math.toDegrees(mRotationManager.orientation[2])) + 90;
         }
         writeRotationValues(deg);
         round = !round;
     }
 
     private void writeRotationValues(int deg) {
-        if (deg > 90) {
-            deg = 90;
+        if (deg >= 60) {
+            deg = 60;
         }
-        else if (deg < -90) {
-            deg = -90;
+        else if (deg <= -60) {
+            deg = -60;
         }
-
-        mCharacteristic.setValue(deg + 90, BluetoothGattCharacteristic.FORMAT_UINT8, 0);
+        deg += 60;
+        if (round) {
+            deg |= 0x80;
+        }
+        mCharacteristic.setValue(deg, BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mGatt.writeCharacteristic(mCharacteristic);
     }
 
